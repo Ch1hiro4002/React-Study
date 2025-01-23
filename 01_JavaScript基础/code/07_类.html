@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类</title>
+    <script>
+        class Person {
+            // 定义属性
+            // name = '孙悟空';
+            // age = 18;
+
+            // 定义构造函数
+            // 当new一个对象时都会调用constructor函数
+            constructor(name, age) {
+                // 将参数赋值给对象的属性，在构造函数中，可以通过this来引用当前的对象
+                this.name = name;
+                this.age = age;
+            }
+
+            // 定义实例方法
+            run() {
+                console.log('我正在跑步！');
+            }
+        }
+
+        const per1 = new Person('孙悟空', 18);
+        const per2 = new Person('猪八戒', 20);
+        console.log(per1);   
+        console.log(per2); 
+        console.log(per1 === per2); // false，说明这是两个不同的对象
+        per1.run();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

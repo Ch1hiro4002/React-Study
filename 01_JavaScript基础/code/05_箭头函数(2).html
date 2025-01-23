@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+    <script>
+        /*
+        *   1.箭头函数没有arguments，但是可以用 '...'
+        *   2.箭头函数没有自己的this
+        *       - 它的this总是指向外层作用域的this
+        *   3.箭头函数的this无法通过call()、apply()、bind()修改
+        *   4.箭头函数无法作为构造函数使用，即不能被new
+        *
+        *
+        */
+    
+        function fn1() {
+            // arguments 用来保存函数的实参
+            console.log(arguments.length); 
+        }
+        fn1(1, 2, 3); // 3
+
+        function fn2(a, b, ...args) {
+            console.log(args); 
+        }
+        fn2(1, 2, 3, 4, 5); // [3, 4, 5]
+
+        const fn3 = (a, ...args) => {
+            console.log(args);
+        };
+        fn3(1, 2, 3);   // [2, 3]
+
+
+
+
+        const fn4 = () => {
+            console.log(this);
+        };
+        fn4();  // Window
+
+        const obj1 = {
+            hello: () => {
+                console.log(this);
+            }
+        };
+        obj1.hello();   // Window
+
+        const obj2 = {
+            hello: function() {
+                console.log(this);
+            }
+        };
+        obj2.hello();   // Object
+
+        const obj3 = {
+            hello: function() {
+                const world = () => {
+                    console.log(this);
+                };
+
+                world();
+            }
+        };
+        obj3.hello();   // Object
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态属性和方法</title>
+    <script>
+        class MyClass { 
+            // static 关键字声明静态属性和方法
+            static name = '孙悟空';
+
+            static fn = () => {
+                console.log('我是静态方法！');
+            }
+        }
+
+        console.log(MyClass.name);
+        MyClass.fn();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

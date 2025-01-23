@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展开</title>
+    <script>
+        function add(a, b ,c) {
+            return(a + b + c)
+        }
+    
+        const arr = [1, 2, 3];
+        console.log(add(...arr));   // 输出 6
+    
+        const arr2 = [...arr];
+        console.log(arr2);  // 将arr的值先复制给arr2
+    
+        const obj = {
+            name: '孙悟空',
+            age: 18,
+            gender: '男'
+        };
+    
+        const obj2 = {...obj};
+        console.log(obj2);  // 将obj的值浅赋值给obj2
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

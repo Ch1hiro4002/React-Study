@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量</title>
+    <script>
+        /*
+        *   var
+        *       - 没有块级作用域
+        *   let
+        *       - 有块级作用域
+        *   const
+        *       - 有块级作用域
+        *       - 使用场景
+        *           1. 对于一些常量可以使用const声明
+        *           2. 对于一些对象（函数）也可以使用const声明，可以避免修改
+        */
+
+        {
+            var a = 10;
+            let b = 20;
+        }
+        console.log(a); // 正常输出
+        console.log(b); // 没有输出
+
+
+        const PI = 3.14;
+        const obj = {name: "孙悟空"}
+        obj.age = 18;
+        console.log(obj.age);   // 可以输出新添加的属性，但是不能修改原有的属性
+
+        const fn = function () {
+
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

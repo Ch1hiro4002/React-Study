@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的方法</title>
+    <script>
+        /*
+        *   map()：
+        *       - 需要一个回调函数作为参数，回调函数的返回值会成为一个新数组中的元素
+        *       - 回调函数有三个参数：
+        *           1. 当前的元素
+        *           2. 当前元素的索引
+        *           3. 当前数组
+        * */
+
+        const arr1 = ['孙悟空', '猪八戒', '唐僧'];
+
+        let result = arr1.map((item, index, array) => {
+            console.log(item, index, array);
+
+            return "<li>" + item + "</li>"
+        });
+
+        console.log(result);    // 会输出一个新数组
+
+        /*
+        *   filter()：
+        *       - 可以从一个数组中获取符合条件的元素
+        *       - 根据回调函数的结果来决定是否保留元素，true保留，false不保留
+        * */
+
+        const arr2 = [1, 2, 3, 4, 5];
+
+        result = arr2.filter(item => {
+            return item % 2 === 0;
+        });
+
+        console.log(result);    // 输出 [2, 4]
+
+        /*
+        *   find()：
+        *       - 可以从一个数组中获取符合条件的第一个元素
+        * */
+
+        result = arr2.find(item => {
+            return item % 2 === 0;
+        });
+
+        console.log(result);    // 输出 2
+
+        /*
+        *   reduce()：
+        *       - 可以用来整合数组中的元素
+        *       - 需要两个参数：
+        *           1. 回调函数（包含四个参数）
+        *               prev 上一次的运算结果
+        *               curr 当前值
+        *               index 当前索引
+        *               arr 当前数组
+        *           2. 初始值
+        *               指定第一次运算的prev，如果不指定直接从第二个元素开始计算
+        * */
+
+        result = arr2.reduce((prev, curr, index, array) => {
+            console.log(prev, curr, index, array);
+            return (prev + curr)
+        }, 0);
+        
+        console.log(result);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

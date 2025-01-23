@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的继承</title>
+    <script>
+        class Animal {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            cry = () => {
+                console.log('动物的叫声');
+            }
+        }
+
+        class Dog extends Animal {
+            // 当在子类中重写父类的构造函数时，必须在子类构造函数中调用父类的构造函数
+            constructor(name, age, weight) {
+                super(name, age);    // 调用父类的构造函数
+                this.weight = weight;
+            }
+
+            // 子类继承父类后将获得父类中的所有属性和方法，也可以创建同名属性或方法来对父类进行重写
+            cry = () => {
+                console.log('汪汪汪！');
+            }
+        }
+
+        const dog = new Dog('大黄', 3, 25);
+        console.log(dog.name, dog.age, dog.weight); // 大黄 3 25
+        dog.cry();  // 汪汪汪！
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
