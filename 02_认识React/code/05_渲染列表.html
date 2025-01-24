@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渲染列表</title>
+    <script src="script/react.development.js"></script>
+    <script src="script/react-dom.development.js"></script>
+    <script src="script/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const name_cn = '李华';
+        const name_en = 'LiHua';
+        const lang = 'en';
+
+        /* 
+        *   {} 只能放Js表达式，不能放语句（如if）,反过来可行
+        */
+
+        let div;
+    
+        if(lang === 'en') {
+            div = <div>Hello, {name_en}!</div>
+        }else if(lang === 'cn') {
+            div = <div>你好，{name_cn}!</div>
+        };
+
+        const data = ['孙悟空', '猪八戒', '沙和尚'];
+
+        // let arr = [];
+
+        // // 遍历数组
+        // for(let i = 0; i < data.length; i++) {
+        //     arr.push(<li>{data[i]}</li>);
+        // };
+
+        // 使用 map 函数
+        const arr = data.map((item) => {
+            return <li>{item}</li>
+        });
+
+        // JSX 会自动将数组中的元素展开
+        const list = <ul>{arr}</ul>;
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        root.render(list);
+    </script>
+</body>
+</html>

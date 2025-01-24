@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloWorld</title>
+    <!-- 引入 React 核心库 -->
+    <script src="script/react.development.js"></script>
+    <!-- 引入 React DOM 库 （必须在核心库后引入） -->
+    <script src="script/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- <script>
+        //  通过 DOM 添加一个 div
+
+        // 创建 div，这里是一个 dom 元素
+        const div = document.createElement('div'); 
+        // 向 div 中添加内容
+        div.innerText = '我是 DOM 创建的 div';
+        // 获取 root
+        const root = document.getElementById('root');
+        // 将 div 添加到页面中
+        root.appendChild(div);
+    </script> -->
+
+    <script>
+        // 通过 React 添加一个 div
+        /*
+        *   React.createElement()
+        *       - 用来创建一个 React 元素
+        *       - 需要三个参数：
+        *           1. 元素名（组件名）
+        *           2. 元素的属性（对象类型）
+        *           3. 元素的子元素（内容）
+        *   
+        *   ReactDOM.createRoot()
+        *       - 用来创建 React 根元素
+        *       - 需要一个 DOM 元素作为参数
+        */
+
+        // 创建 div
+        const div = React.createElement('div', {}, '我是 React 创建的 div');
+
+        // 获取根元素 root
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        // 将 div 渲染到根元素
+        root.render(div);
+
+
+    </script>
+</body>
+</html>

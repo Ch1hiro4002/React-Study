@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+    <script src="script/react.development.js"></script>
+    <script src="script/react-dom.development.js"></script>
+    <!-- 引入 babel.min.js -->
+    <script src="script/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 设置js代码被babel处理 -->
+    <script type="text/babel">
+        
+        // 命令式编程
+        // const button = React.createElement('button', {}, '按钮');
+
+        // 声明式编程
+        const button = <button>按钮</button>;
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        root.render(button);
+
+    </script>
+</body>
+</html>

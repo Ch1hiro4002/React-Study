@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+    <script src="script/react.development.js"></script>
+    <script src="script/react-dom.development.js"></script>
+    <!-- 引入 babel.min.js -->
+    <script src="script/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- 设置js代码被babel处理 -->
+    <script type="text/babel">
+
+        const name = '孙悟空';
+        const fn = () => {
+            return 'Hello'
+        };
+
+        const div = <div 
+            id ='home'
+            className = 'divclass'
+            style = {{background: 'red'}}
+            >
+            <ul>
+                <li>无序列表</li>    
+            </ul>    
+
+            <input type="text" />
+
+            <div>
+                {name}
+                <br/>
+                {1 + 1}
+                <br/>
+                {fn()}
+            </div>
+        </div>;
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        root.render(div);
+
+    </script>
+</body>
+</html>

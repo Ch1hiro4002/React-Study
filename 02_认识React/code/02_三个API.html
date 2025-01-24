@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三个API</title>
+    <script src="script/react.development.js"></script>
+    <script src="script/react-dom.development.js"></script>
+</head>
+<body>
+    <button id="btn">点击一下</button>
+    <div id="root"></div>
+
+    <script>
+        // 创建 React 元素
+        const button = React.createElement('button', {
+            id: 'btn',
+            className: 'button',
+            onClick: () => {
+                alert('点击成功！')
+            }
+        }, '按钮');
+
+        const div = React.createElement('div', {}, '我是一个div', button);
+
+
+        // 获取根元素
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        // 将 React 添加到根元素
+        root.render(div);
+
+        // 更新 button 元素中的内容
+        const btn = document.getElementById('btn');
+        
+        btn.addEventListener('click', () => {
+            const button = React.createElement('button', {
+                id: 'btn',
+                className: 'button',
+                onClick: () => {
+                    alert('点击成功！')
+                }
+            }, 'click me');
+
+            const div = React.createElement('div', {}, '我是一个div', button);
+
+            root.render(div);
+        })
+
+    </script>
+</body>
+</html>
