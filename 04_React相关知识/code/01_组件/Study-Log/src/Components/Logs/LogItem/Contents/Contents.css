@@ -1,0 +1,16 @@
+.content {
+    flex: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+.study {
+    font-size: 16px;
+    color: #194B49;
+    
+}
+
+.time {
+    color: #D62828;
+    margin: 20px;
+}
