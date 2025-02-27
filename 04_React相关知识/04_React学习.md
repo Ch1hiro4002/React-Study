@@ -204,5 +204,126 @@ const Date = (props) => {
 export default Date;
 ```
 
-**注意：**在子组件中都要传入`props`参数
+**注意：**在子组件中都要传入`props`参数，而且`props`组件是只读的，不能被修改
+
+# 4. 优化 Date
+
+```Jsx
+// src/Components.Logs/Logs.js
+
+import LogItem from './LogItem/LogItem.js';
+import './Logs.css'
+
+const Logs = () => {
+
+  const LogDate = [
+    {
+      id: '001',
+      date: new Date(2024, 5, 25, 19, 30),
+      study: '学习React',
+      time: '10'
+    },
+    {
+      id: '002',
+      date: new Date(2025, 6, 20, 8, 30),
+      study: '学习Move',
+      time: '20'
+    },
+    {
+      id: '003',
+      date: new Date(2025, 6, 25, 12, 25),
+      study: '学习JavaScript',
+      time: '30'
+    }
+  ];
+
+  const LogItemDate = LogDate.map(item => <LogItem key={item.id} date={item.date} study={item.study} time={item.time} />)
+
+  return(
+    <div className="logs">
+      { LogItemDate }
+    </div>
+  )
+  
+};
+
+export default Logs;
+```
+
+# 5. State 简介
+
+**抛出问题：一个组件渲染时只会返回一次return的值，怎么可以修改return中的值并返回？**
+
+以计数器为例：
+
+```JSX
+// src/App.js
+
+// 一个计数器
+
+import './App.css';
+
+const App = () => {
+    // 创建一个变量
+    let counter = 0;
+
+    // 创建点击事件
+    const AddHandler = () => {
+        counter += 1;
+        console.log(counter);
+    }
+
+    const SubHandler = () => {
+        counter -= 1;
+        console.log(counter);
+    }
+    
+    return(
+        <div className='app'>
+            <h1>{counter}</h1>
+            <button onClick={AddHandler}>+</button>
+            <button onClick={SubHandler}>-</button>
+        </div>
+    )
+};
+
+export default App;
+```
+
+当触发点击事件后`counter`的值确实改变了，但是页面当中并没有重新渲染内容，这时就要用到`State`这个`Hook`去重新渲染组件
+
+**State**需要一个值作为参数，并返回一个数组：
+
+- 数组中第一个参数是初始值，直接修改不会触发组件的重新渲染
+- 数组中第二个参数是一个函数，调用其修改`state`会出发组件的重新渲染
+
+```JSX
+// 使用 State Hook
+const [counter, setCounter] = useState(0);
+
+// 创建点击事件
+const AddHandler = () => {
+    setCounter(counter + 1);
+    console.log(counter);
+}
+
+const SubHandler = () => {
+    setCounter(counter - 1);
+    console.log(counter);
+}
+```
+
+为了避免点击速度过快带来计算错误，可以给`setCounter`传递回调函数来避免这一问题
+
+```JS
+const AddHandler = () => {
+    setTimeout(() => {
+        setCounter((prevCounter) => {
+            return prevCounter + 1;
+        });
+    }, 1000);
+}
+```
+
+`setTimeout`是一个延时函数，`prevCounter`是获取上一个最新的`counter`变量的值
 
