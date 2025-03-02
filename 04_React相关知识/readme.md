@@ -313,17 +313,90 @@ const SubHandler = () => {
 }
 ```
 
-为了避免点击速度过快带来计算错误，可以给`setCounter`传递回调函数来避免这一问题
+为了避免点击速度过快带来计算错误，可以给`setState()`传递回调函数来避免这一问题
 
 ```JS
 const AddHandler = () => {
     setTimeout(() => {
-        setCounter((prevCounter) => {
-            return prevCounter + 1;
+        setCounter((prevState) => {
+            return prevState + 1;
         });
     }, 1000);
 }
 ```
 
 `setTimeout`是一个延时函数，`prevCounter`是获取上一个最新的`counter`变量的值
+
+**State 的一些注意事项：**
+
+- 在重新渲染对象时，必须是要生成一个新的对象，如果直接修改旧的对象，React 不会重新渲染，这里有两种方法
+
+  - 第一种方法：使用`Object.assign({},旧对象)`，将旧的对象拷贝到新对象中，再修改新对象的属性进行`setState`
+  - 第二种方法：使用`...`展开运算符，例如：`setUser({...user, name: 'John', age: 20})`
+
+  ```jsx
+  const UpdateUserHandler = () => {
+      // 如果直接修改旧的 user 对象，React 不会重新渲染
+      // user.name = 'John';
+      // user.age = 20;
+      // console.log(user);
+      // setUser(user);
+  
+      // 如果想要重新渲染，需要创建一个新的对象，这里相当于把 user 对象的属性拷贝到一个新的对象中
+      // const newUser = Object.assign({}, user);
+      // newUser.name = 'John';
+      // newUser.age = 20;
+      // setUser(newUser);
+  
+      // 使用展开运算符也可以实现重新渲染
+      setUser({...user, name: 'John', age: 20});
+  }
+  ```
+
+- `setState`是一个异步函数，就是它会在执行函数时先将要修改的`State`放入一个队列，然后继续往下执行，最后再从第一个开始重新渲染，所以一般重复渲染的话只会渲染最后一次
+
+# 6. 获取原生 DOM
+
+1. 使用传统的 `document` 对 DOM 进行操作
+
+2. 直接从 React 处获取DOM对象
+
+   1. 创建一个存储DOM对象的容器
+
+      - 使用 useRef() 钩子函数
+        1. React 中的钩子函数只能用于函数组件或自定义钩子
+        2. 钩子函数只能直接在函数组件中使用
+
+   2. 将容器设置为想要获取DOM对象元素的`ref`属性
+
+      -- `<h1 ref={xxx}>...</h1>`
+
+      - React 会自动将当前元素的 DOM 对象设置为容器 `current` 属性
+
+```jsx
+// src/App.js
+import { useRef } from 'react';
+import './App.css';
+
+const App = () => {
+    // 获取原生 DOM 对象
+
+    // 创建一个钩子容器，只能在函数组件中使用
+    const h1Ref = useRef();
+
+    const clickHandler = () => {
+        h1Ref.current.innerHTML = '标题被修改了';
+        alert(h1Ref.current);
+        
+    }
+    return(
+        <div className='app'>
+            <h1 ref={h1Ref}>标题</h1>
+            <button onClick={clickHandler}>点击</button>
+        </div>
+    )
+};
+
+export default App;
+```
 
